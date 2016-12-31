@@ -6,8 +6,6 @@
 package Elements;
 
 import Actions.Action;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Control;
 
 /**
@@ -18,7 +16,8 @@ public interface Element {
     
     void setCoordinates(double x, double y);
     Control getElement();
-    void setElementAction(Action act, Element workingElement);
+
+    void setElementAction(Action act);
     Field getField();
     String getElementText();
     void run();

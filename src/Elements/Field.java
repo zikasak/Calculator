@@ -8,10 +8,10 @@ package Elements;
 import Actions.Action;
 import Commands.Command;
 import Commands.plusCommand;
-import java.math.BigDecimal;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
+
+import java.math.BigDecimal;
 
 /**
  *
@@ -26,7 +26,6 @@ public class Field implements Element{
     private Field memoryField = this;
     private Command currentBinaryCommand;
     private Action act;
-    private Element workingElement;
 
     public Field(){
         this.field = new TextField();
@@ -36,8 +35,8 @@ public class Field implements Element{
     
     public void createMemory(){
         this.memoryField = new Field();
-    };
-    
+    }
+
     @Override
     public void setCoordinates(double x, double y){
         this.field.setLayoutX(x);
@@ -56,12 +55,12 @@ public class Field implements Element{
         return new BigDecimal(this.prevFieldText);
     }
     
-    public void setOperationStatus(boolean b){
-        this.isOperationChanged = b;
-    }
-    
     public boolean getOperationStatus(){
         return isOperationChanged;
+    }
+
+    public void setOperationStatus(boolean b) {
+        this.isOperationChanged = b;
     }
     
     public void setPrevFieldText(){
@@ -78,12 +77,12 @@ public class Field implements Element{
         return new BigDecimal(this.field.getText()+cont);
     }
     
-    public void setBinaryCommand(Command bc){
-        this.currentBinaryCommand = bc;
-    }
-    
     public Command getBinaryCommand(){
         return this.currentBinaryCommand;
+    }
+
+    public void setBinaryCommand(Command bc) {
+        this.currentBinaryCommand = bc;
     }
     
     public void setDotSettedStatus(boolean st){
@@ -109,9 +108,8 @@ public class Field implements Element{
     
 
     @Override
-    public void setElementAction(Action act, Element workingElement) {
+    public void setElementAction(Action act) {
         this.act = act;
-        this.workingElement = workingElement;
         this.field.setOnAction((ActionEvent event ) ->
            run());
     }
@@ -132,6 +130,6 @@ public class Field implements Element{
 
     @Override
     public void run() {
-        act.execute(workingElement, currentBinaryCommand);
+        act.execute(this, currentBinaryCommand);
     }
 }

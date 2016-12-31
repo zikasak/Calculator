@@ -8,17 +8,13 @@ package Calculator;
 
 import Elements.Element;
 import Elements.Field;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -55,19 +51,10 @@ class WorkPane {
     
     void setOnClickAction(Field element){
         this.getPane().setOnKeyPressed((KeyEvent kev) -> {
-            if (kev.getCode().isDigitKey()){
-                BigDecimal curr = element.getFieldContent(true);
-                BigDecimal n = new BigDecimal(new BigInteger(kev.getText()), curr.scale()+1);
-                curr = curr.add(n);
-                curr = element.getDotStatus() ? curr : curr.movePointRight(1);
-                element.setFieldContent(curr);
-                return;
-            }
             Element elem = elements.get(kev.getText());
             if (elem != null){
                 elem.run();
             }
-
         });
     }
 }

@@ -9,7 +9,6 @@ import Actions.Action;
 import Commands.Command;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -21,7 +20,6 @@ public class Btn implements Element{
     private final Command command;
     private final Button btn;
     private Action act;
-    private Element workingElement;
 
     public Btn(Field field, Command command, String btnText){
         this.field = field;
@@ -42,12 +40,9 @@ public class Btn implements Element{
     }
     
     @Override
-    public void setElementAction(Action act, Element workingElement){
+    public void setElementAction(Action act) {
         this.act = act;
-        this.workingElement = workingElement;
-        this.btn.setOnAction((ActionEvent event) -> {
-            run();
-        });
+        this.btn.setOnAction((ActionEvent event) -> run());
     }
 
     @Override
@@ -63,7 +58,7 @@ public class Btn implements Element{
     @Override
     public void run() {
         try{
-            act.execute(workingElement, this.command);
+            act.execute(this, this.command);
         }
         catch(Exception ex){
             this.getField().setFieldContent(ex);

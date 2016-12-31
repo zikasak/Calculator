@@ -6,6 +6,7 @@
 package Elements;
 
 import Actions.AddNumToFieldAction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class NumberKeys {
     private Btn getBtn(String text, double xcoord, double ycoord){
         Btn btn = new Btn(field, null, text);
         btn.setCoordinates(xcoord, ycoord);
-        btn.setElementAction(antfa, btn);
+        btn.setElementAction(antfa);
         return btn;
     }
 }

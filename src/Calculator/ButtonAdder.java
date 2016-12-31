@@ -6,19 +6,12 @@
 package Calculator;
 
 import Actions.*;
-import Commands.Command;
-import Commands.DivisionCommand;
-import Commands.MultiplyCommand;
-import Commands.minusCommand;
-import Commands.NeutralCommand;
-import Commands.PercentCommand;
-import Commands.nullCommand;
-import Commands.plusCommand;
-import Commands.sqrtCommand;
+import Commands.*;
 import Elements.Btn;
-import Elements.Field;
 import Elements.Element;
+import Elements.Field;
 import Elements.NumberKeys;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,21 +19,15 @@ import java.util.List;
  *
  * @author zikas
  */
-public class ButtonAdder {
+class ButtonAdder {
 
     private final Field field;
 
-    public ButtonAdder(Field field){
+    ButtonAdder(Field field) {
         this.field = field;
     }
-    
-    /**
-     *
-     * @param xcoord x coordinate of top left corner
-     * @param ycoord y coordinate of top left corner
-     * @return 
-     */
-    public List<Element> addBtns (double xcoord, double ycoord){
+
+    List<Element> addBtns(double xcoord, double ycoord) {
         List<Element> elems = new ArrayList<>();
         
         elems.add(getBtn(plusCommand.class, MemorySetAction.class, xcoord, ycoord, "M+" ));
@@ -73,10 +60,10 @@ public class ButtonAdder {
             Object act = action.newInstance();
             Btn btn = new Btn(field, (Command) comm, text);
             btn.setCoordinates(x, y);
-            btn.setElementAction((Action) act, btn);
+            btn.setElementAction((Action) act);
             return btn;
         } catch (InstantiationException | IllegalAccessException ex) {
+            return null;
         }
-        return null;
     }
 }
