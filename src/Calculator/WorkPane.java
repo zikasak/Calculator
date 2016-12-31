@@ -24,21 +24,21 @@ import javafx.scene.layout.Pane;
  *
  * @author g.ioffe
  */
-public class WorkPane {
+class WorkPane {
 
    
     private final Pane root;
     private Map<String, Element> elements = new HashMap<>();
 
-    public WorkPane(){
+    WorkPane(){
         this.root = new Pane();
     }
     
-    public void addElement(Element element){
+    void addElement(Element element){
         this.addElement(element.getElement());
     }
     
-    public Pane getPane(){
+    Pane getPane(){
         return this.root;
     }
     
@@ -46,14 +46,14 @@ public class WorkPane {
         this.root.getChildren().add(element);
     }
     
-    public void addElement(List<Element> elems){
-        elems.stream().forEach((elem) ->{
-                this.root.getChildren().add(elem.getElement());
-                elements.put(elem.getElementText(), elem);
+    void addElement(List<Element> elems){
+        elems.forEach((elem) -> {
+            this.root.getChildren().add(elem.getElement());
+            elements.put(elem.getElementText(), elem);
         });
     }
     
-    public void setOnClickAction(Field element){
+    void setOnClickAction(Field element){
         this.getPane().setOnKeyPressed((KeyEvent kev) -> {
             if (kev.getCode().isDigitKey()){
                 BigDecimal curr = element.getFieldContent(true);
