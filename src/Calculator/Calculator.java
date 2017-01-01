@@ -30,7 +30,7 @@ public class Calculator extends Application {
         field.setCoordinates(50, 50);
         field.createMemory();
         workpane.addElement(field);
-        workpane.setOnClickAction(field);
+        workpane.setOnClickAction();
         ButtonAdder ba = new ButtonAdder(field);
         workpane.addElement(ba.addBtns(50, 125));
         Scene scene = new Scene(workpane.getPane(), 300, 250);

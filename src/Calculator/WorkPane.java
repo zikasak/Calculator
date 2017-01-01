@@ -7,7 +7,6 @@ package Calculator;
 
 
 import Elements.Element;
-import Elements.Field;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -48,8 +47,8 @@ class WorkPane {
             elements.put(elem.getElementText(), elem);
         });
     }
-    
-    void setOnClickAction(Field element){
+
+    void setOnClickAction() {
         this.getPane().setOnKeyPressed((KeyEvent kev) -> {
             Element elem = elements.get(kev.getText());
             if (elem != null){
